@@ -1,6 +1,6 @@
 HELP.md
 /target/
-!.mvn
+.mvn
 node_modules
 
 ### STS ###
@@ -28,3 +28,7 @@ node_modules
 
 ### VS Code ###
 .vscode/
+/keystore.p12
+/mvnw.cmd
+/package-lock.json
+/mvnw
