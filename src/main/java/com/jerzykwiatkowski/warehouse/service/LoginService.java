@@ -59,7 +59,7 @@ public class LoginService {
             OAuth2AuthenticationToken auth2AuthenticationToken =
                     (OAuth2AuthenticationToken) authentication;
 
-            Map<String, String> oAuth2UserInfo = getOAuth2UserInfo(auth2AuthenticationToken);
+            Map<String, String> oAuth2UserInfo = this.getOAuth2UserInfo(auth2AuthenticationToken);
 
             if ("google".equals(auth2AuthenticationToken.getAuthorizedClientRegistrationId())) {
                 name = oAuth2UserInfo.get("given_name");
