@@ -13,9 +13,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 @Component
 public class InitDataFixtures {
@@ -43,26 +41,9 @@ public class InitDataFixtures {
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         Role userRole = roleRepository.findByName("ROLE_USER");
 
-        User user = new User();
-        user.setUsername("test");
-        user.setFirstName("test");
-        user.setLastName("test");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setEmail("test@test.com");
-        user.setRoles(new HashSet<>(Arrays.asList(adminRole, userRole)));
-        userRepository.save(user);
+        createItems();
 
-        Item item1 = new Item("Microphone", "Condenser", "AKG C3000", "Sound", 4, 4);
-        Item item2 = new Item("Microphone", "Condenser", "Shure PG48", "Sound", 8, 8);
-
-        itemRepository.save(item1);
-        itemRepository.save(item2);
-
-        Map<Item, Integer> items = new HashMap<>();
-        items.put(item1, 2);
-        items.put(item2, 2);
-
-//        reportService.generateReport(items, "Zajezdnia Kraków");
+        createUsers(adminRole, userRole);
     }
 
     private void createRoleIfNotFound(String name) {
@@ -73,5 +54,40 @@ public class InitDataFixtures {
             role.setName(name);
             roleRepository.save(role);
         }
+    }
+
+    private void createItems() {
+
+        Item item1 = new Item();
+        Item item2 = new Item();
+
+        item1.setName("Microphone");
+        item1.setType("Condenser");
+        item1.setModel("AKG C3000");
+        item1.setCategory("Sound");
+        item1.setQuantity(4);
+        item1.setInStock(4);
+
+        item2.setName("Microphone");
+        item2.setType("Condenser");
+        item2.setModel("Shure PG48");
+        item2.setCategory("Sound");
+        item2.setQuantity(8);
+        item2.setInStock(8);
+
+        itemRepository.save(item1);
+        itemRepository.save(item2);
+    }
+
+    private void createUsers(Role adminRole, Role userRole) {
+        User user = new User();
+        user.setUsername("test");
+        user.setFirstName("test");
+        user.setLastName("test");
+        user.setPassword(passwordEncoder.encode("test"));
+        user.setEmail("test@test.com");
+        user.setRoles(new HashSet<>(Arrays.asList(adminRole, userRole)));
+
+        userRepository.save(user);
     }
 }
