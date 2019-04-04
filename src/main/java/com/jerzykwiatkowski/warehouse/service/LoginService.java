@@ -64,6 +64,13 @@ public class LoginService {
             if ("google".equals(auth2AuthenticationToken.getAuthorizedClientRegistrationId())) {
                 name = oAuth2UserInfo.get("given_name");
             }
+
+            if ("facebook".equals(auth2AuthenticationToken.getAuthorizedClientRegistrationId())) {
+                name = oAuth2UserInfo.get("name");
+                if (name.contains(" ")) {
+                    name = name.substring(0, name.indexOf(" "));
+                }
+            }
         }
 
         return name;
