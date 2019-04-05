@@ -1,0 +1,274 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    margin: 0;
+}
+
+.app-content {
+    display: flex;
+    height: inherit;
+}
+
+.positioned {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.positioned::before {
+    flex-grow: 1;
+    content: '';
+    display: block;
+    height: 24px;
+}
+
+.positioned::after {
+    flex-grow: 1;
+    content: '';
+    display: block;
+    height: 24px;
+}
+
+.login-card {
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    width: 450px;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+}
+
+.card-head {
+    padding-top: 16px;
+    text-align: center;
+}
+
+.card-h {
+    font-size: 24px;
+    padding-top: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.card-p {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .1px;
+    line-height: 1.5;
+    padding-bottom: 0;
+    padding-top: 8px;
+    margin-bottom: 0;
+    margin-top: 0
+}
+
+.card-body {
+    padding: 24px 40px;
+}
+
+.card-footer {
+    padding: 24px 40px;
+}
+
+.table {
+    margin: 0 auto;
+    width: 100%
+}
+
+.table td {
+    padding: 8px 0;
+}
+
+.table div {
+    width: 100%;
+}
+
+.mdc-drawer-app-content {
+    flex: auto;
+    overflow: auto;
+    position: relative;
+}
+
+.main-content {
+    overflow: auto;
+    height: 100%;
+}
+
+.app-bar {
+    position: absolute;
+}
+
+.mdc-top-app-bar {
+    z-index: 7;
+}
+
+input.field {
+    width: 90%;
+}
+
+/*table {*/
+/*    border-collapse: collapse;*/
+/*}*/
+
+/*td, th {*/
+/*    border: 1px solid #999;*/
+/*    padding: 0.5rem;*/
+/*    text-align: left;*/
+/*}*/
+
+/*Classes for creating dialogs*/
+
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+}
+
+
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover {
+    background: #00d9ff;
+}
+
+
+._29o8 {
+    display: inline-block;
+}
+
+._xvm ._5h0c._5h0d {
+    min-width: initial;
+}
+
+._5h0c._5h0d {
+    border-radius: 4px;
+    max-width: 400px;
+    min-width: 240px;
+}
+
+._5h0c {
+    background-color: #e9ebee;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+}
+
+._xvm ._5h0c._5h0d ._5h0i {
+    max-width: 272px;
+    min-width: initial;
+    width: auto;
+}
+
+._5h0d ._5h0i {
+    height: 40px;
+}
+
+._5f0n {
+    table-layout: fixed;
+    width: 100%;
+
+}
+
+._51mz {
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+._5h0i {
+    background-color: #4267b2;
+    border-radius: 4px;
+    color: #fff;
+}
+
+._5h0d ._5h0k {
+    height: 24px;
+    margin: 8px;
+}
+
+._5h0c ._5h0k {
+    float: left;
+}
+
+._5h0c ._5h0j {
+    white-space: nowrap;
+}
+
+._5h0m {
+    height: 24px;
+    width: 24px;
+}
+
+._51mx:last-child > ._51m- {
+    padding-bottom: 0;
+}
+
+._51mx:first-child > ._51m- {
+    padding-top: 0;
+}
+
+._51mz ._51mw {
+    padding-right: 0;
+}
+
+._xvm ._5h0d ._5h0o {
+    margin: 0 24px 0 12px;
+}
+
+._5h0d ._5h0o {
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+._5h0o {
+    border: none;
+    font-family: Helvetica, Arial, sans-serif;
+    letter-spacing: .25px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+}
