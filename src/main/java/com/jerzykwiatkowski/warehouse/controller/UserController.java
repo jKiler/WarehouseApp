@@ -8,6 +8,7 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -31,6 +32,7 @@ public class UserController {
         this.assembler = assembler;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping
     public Resources<Resource<User>> all() {
 
@@ -43,7 +45,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> newItem(@RequestBody User newUser) throws URISyntaxException {
+    public ResponseEntity<?> newUser(@RequestBody User newUser) throws URISyntaxException {
 
         Resource<User> resource = assembler.toResource(repository.save(newUser));
 
@@ -62,7 +64,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> replaceItem(@RequestBody User newUser, @PathVariable Long id) throws URISyntaxException {
+    public ResponseEntity<?> replaceUser(@RequestBody User newUser, @PathVariable Long id) throws URISyntaxException {
 
         User updatedUser = repository.findById(id)
                 .map(user -> {
@@ -84,7 +86,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteItem(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
 
         repository.deleteById(id);
 

@@ -32,3 +32,4 @@ node_modules
 /mvnw.cmd
 /package-lock.json
 /mvnw
+/src/main/resources/static/built/
