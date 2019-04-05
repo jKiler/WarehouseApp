@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in - WarehouseApp</title>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/main.css"/>
+</head>
+<body>
+
+<div class="positioned">
+    <div class="login-card">
+        <div>
+            <div class="card-head">
+                <h1 class="card-h">
+                    Sign in
+                </h1>
+                <p class="card-p">
+                    Use your Warehouse Account
+                </p>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/login}" method="post">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div id="username" class="mdc-text-field mdc-text-field--outlined">
+                                    <input class="mdc-text-field__input" th:type='text' th:name='username' required>
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label class="mdc-floating-label">Username</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="password" class="mdc-text-field mdc-text-field--outlined">
+                                    <input class="mdc-text-field__input" type='password' name='password' required>
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label class="mdc-floating-label">Password</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="mdc-button mdc-button--raised" type="submit" value="Sign in"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div th:each="url : ${urls}">
+                    <div style="padding: 10px 0" class="_xvm _29o8" id="u_0_1">
+                    <div class="_5h0c _5h0d" style="" role="button" tabindex="0">
+                        <table class="uiGrid _51mz _5h0i _5f0n">
+                            <tbody>
+                            <tr class="_51mx">
+                                <td class="_51m-">
+                                    <div class="_5h0j">
+                                    <span class="_5h0k"><svg xmlns="http://www.w3.org/2000/svg"
+                                                             viewBox="0 0 216 216" class="_5h0m"
+                                                             color="#FFFFFF"><path fill="#FFFFFF" d="
+          M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9
+          11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1
+          11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2
+          15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3
+          11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path></svg>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td class="_51m- _51mw">
+                                    <div class="_5h0s">
+                                        <div class="_5h0o">
+                                            <a style="text-decoration: none; color: inherit" role="button"
+                                               th:text="'Log in With '+${url.key}"
+                                               th:href="${url.value}">Client</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script>
+    mdc.textField.MDCTextField.attachTo(document.querySelector('#username'));
+    mdc.textField.MDCTextField.attachTo(document.querySelector('#password'));
+</script>
+<div id="fb-root"></div>
+</body>
+</html>
