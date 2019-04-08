@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Sign in - WarehouseApp</title>
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="/main.css"/>
 </head>
 <body>
@@ -26,29 +27,19 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <div id="username" class="mdc-text-field mdc-text-field--outlined">
-                                    <input class="mdc-text-field__input" th:type='text' th:name='username' required>
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label class="mdc-floating-label">Username</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
-                                    </div>
+                                <div id="username" class="mdc-text-field">
+                                    <input type="text" name="username" id="username-text-field" class="mdc-text-field__input">
+                                    <label class="mdc-floating-label" for="username-text-field">Username</label>
+                                    <div class="mdc-line-ripple"></div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div id="password" class="mdc-text-field mdc-text-field--outlined">
-                                    <input class="mdc-text-field__input" type='password' name='password' required>
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label class="mdc-floating-label">Password</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
-                                    </div>
+                                <div id="password" class="mdc-text-field">
+                                    <input type="password" name="password" id="password-text-field" class="mdc-text-field__input">
+                                    <label class="mdc-floating-label" for="password-text-field">Password</label>
+                                    <div class="mdc-line-ripple"></div>
                                 </div>
                             </td>
                         </tr>

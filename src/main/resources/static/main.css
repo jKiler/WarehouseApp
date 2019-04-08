@@ -1,7 +1,69 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
     height: 100vh;
     margin: 0;
+    background-color: rgba(54, 54, 64, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.mdc-text-field {
+    border-radius: 0;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: rgba(255, 255, 255, 1);
+}
+
+.mdc-text-field .mdc-text-field__input {
+    font-family: 'Eczar', serif;
+    caret-color: rgba(255, 255, 255, 1);
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) {
+    background-color: rgba(255, 255, 255, .04);
+}
+
+.mdc-floating-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: rgba(255, 255, 255, 1);
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    background-color: rgba(255, 255, 255, .04);
+    color: rgba(255, 255, 255, 1);
+}
+
+.mdc-text-field .mdc-line-ripple {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.h1 {
+    font-weight: 300;
+    font-size: 96px;
+}
+
+.h2 {
+    font-weight: 300;
+    font-size: 60px;
+}
+
+.h4 {
+    font-weight: 400;
+    font-size: 34px;
+}
+
+.h5 {
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.h6 {
+
 }
 
 .app-content {
