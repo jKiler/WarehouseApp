@@ -42,6 +42,15 @@ body {
     background-color: rgba(255, 255, 255, 1);
 }
 
+.mdc-form-field {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgba(255, 255, 255, 1);
+}
+
+.mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate) ~ .mdc-checkbox__background {
+    border-color: rgba(255, 255, 255, 1);
+}
+
 .h1 {
     font-weight: 300;
     font-size: 96px;
@@ -96,8 +105,8 @@ body {
     position: relative;
     z-index: 2;
     width: 450px;
-    border: 1px solid #dadce0;
-    border-radius: 8px;
+    /*border: 1px solid #dadce0;*/
+    /*border-radius: 8px;*/
 }
 
 .card-head {
@@ -140,7 +149,7 @@ body {
     padding: 8px 0;
 }
 
-.table div {
+.table div.mdc-text-field {
     width: 100%;
 }
 
