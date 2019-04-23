@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.*;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -65,13 +66,15 @@ public class ItemControllerIntegrationTest {
         second.setQuantity(8);
         second.setInStock(8);
 
-        String expectedResponse = "{\"_embedded\":{\"itemList\":[{\"id\":1,\"name\":\"Microphone\",\"type\":\"Condenser\",\"model\":\"AKG C3000\",\"category\":\"sound\",\"quantity\":4,\"inStock\":4,\"_links\":{\"self\":{\"href\":\"http://localhost/items/1\"},\"items\":{\"href\":\"http://localhost/items\"}}},{\"id\":2,\"name\":\"Microphone\",\"type\":\"Condenser\",\"model\":\"Shure PG48\",\"category\":\"sound\",\"quantity\":8,\"inStock\":8,\"_links\":{\"self\":{\"href\":\"http://localhost/items/2\"},\"items\":{\"href\":\"http://localhost/items\"}}}]},\"_links\":{\"self\":{\"href\":\"http://localhost/items\"}}}";
+        Page<Item> items = new PageImpl<>(Arrays.asList(first, second));
+
+        String expectedResponse = "{\"_embedded\":{\"itemList\":[{\"id\":1,\"name\":\"Microphone\",\"type\":\"Condenser\",\"model\":\"AKG C3000\",\"category\":\"sound\",\"quantity\":4,\"inStock\":4,\"_links\":{\"self\":{\"href\":\"http://localhost/items/1\"},\"items\":{\"href\":\"http://localhost/items\"}}},{\"id\":2,\"name\":\"Microphone\",\"type\":\"Condenser\",\"model\":\"Shure PG48\",\"category\":\"sound\",\"quantity\":8,\"inStock\":8,\"_links\":{\"self\":{\"href\":\"http://localhost/items/2\"},\"items\":{\"href\":\"http://localhost/items\"}}}]},\"_links\":{\"self\":{\"href\":\"http://localhost/items?page=0&size=2\"}},\"page\":{\"size\":0,\"totalElements\":2,\"totalPages\":1,\"number\":0}}";
 
         //when
-        when(itemRepository.findAll()).thenReturn(Arrays.asList(first, second));
+        when(itemRepository.findAll(PageRequest.of(0,2))).thenReturn(items);
 
         //then
-        assertThat(mockMvc.perform(get("/items"))
+        assertThat(mockMvc.perform(get("/items?page=0&size=2"))
                         .andExpect(status().isOk())
                         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                         .andExpect(jsonPath("$._embedded.itemList", hasSize(2)))
@@ -80,7 +83,7 @@ public class ItemControllerIntegrationTest {
                         .getContentAsString(),
                 is(expectedResponse));
 
-        verify(itemRepository, times(1)).findAll();
+        verify(itemRepository, times(1)).findAll(PageRequest.of(0,2));
         verifyNoMoreInteractions(itemRepository);
     }
 
