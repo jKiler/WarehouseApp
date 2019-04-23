@@ -4,8 +4,11 @@ import com.jerzykwiatkowski.warehouse.converter.ItemResourceAssembler;
 import com.jerzykwiatkowski.warehouse.entity.Item;
 import com.jerzykwiatkowski.warehouse.exception.ItemNotFoundException;
 import com.jerzykwiatkowski.warehouse.repository.ItemRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -13,35 +16,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(path = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/items", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ItemController {
 
     private final ItemRepository repository;
     private final ItemResourceAssembler assembler;
+    private final PagedResourcesAssembler<Item> pagedAssembler;
 
     public ItemController(ItemRepository repository,
-                          ItemResourceAssembler assembler) {
+                          ItemResourceAssembler assembler,
+                          PagedResourcesAssembler<Item> pagedAssembler) {
+
         this.repository = repository;
         this.assembler = assembler;
+        this.pagedAssembler = pagedAssembler;
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping
-    public Resources<Resource<Item>> all() {
+    public PagedResources<Resource<Item>> all(Pageable pageable) {
 
-        List<Resource<Item>> items = repository.findAll().stream()
-                .map(assembler::toResource)
-                .collect(Collectors.toList());
+        Page<Item> items = repository.findAll(pageable);
 
-        return new Resources<>(items,
-                linkTo(methodOn(ItemController.class).all()).withSelfRel());
+        return pagedAssembler.toResource(items, assembler);
     }
 
     @Secured("ROLE_ADMIN")
